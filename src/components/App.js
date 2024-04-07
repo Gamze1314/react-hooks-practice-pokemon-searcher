@@ -4,20 +4,22 @@ import PokemonPage from "./PokemonPage";
 function App() {
   const [allPokemons, setAllPokemons] = useState([])
 
-
   useEffect(() => {
     fetch("http://localhost:3001/pokemon")
     .then(res => res.json()) 
     .then(data => setAllPokemons(data))
   },[])
 
-  console.log(allPokemons)
-  // first an empty array, then all pokemons fetched per console logs.
+
+  const addNewPokemon = (newPokemon) => {
+    setAllPokemons([...allPokemons, newPokemon])
+  }
+  
 
 if(allPokemons.length > 0) {
   return (
     <div className="App">
-      <PokemonPage allPokemons={allPokemons} />
+      <PokemonPage allPokemons={allPokemons} addNewPokemon={addNewPokemon} />
     </div>
   );
 } else {
