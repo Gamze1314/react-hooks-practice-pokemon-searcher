@@ -1,15 +1,11 @@
 import React from "react";
 
-function Search({ setSearchText, onSearchPokemon }) {
-  const handleChange = (e) => {
-    setSearchText(e.target.value);
-    onSearchPokemon();
-  };
+function Search() {
 
   return (
     <div className="ui search">
       <div className="ui icon input">
-        <input onChange={handleChange} className="prompt" />
+        <input onChange={null} className="prompt" />
         <i className="search icon" />
       </div>
     </div>

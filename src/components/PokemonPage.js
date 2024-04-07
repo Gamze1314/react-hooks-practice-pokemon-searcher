@@ -4,23 +4,12 @@ import PokemonForm from "./PokemonForm";
 import Search from "./Search";
 import { Container } from "semantic-ui-react";
 
-function PokemonPage() {
-  const [pokemons, setPokemons] = useState([]);
-  const [searchText, setSearchText] = useState("");
+function PokemonPage( { allPokemons }) {
 
-  useEffect(() => {
-    fetch("http://localhost:3001/pokemon")
-      .then((r) => r.json())
-      .then((data) => setPokemons(data));
-  }, []);
+console.log(allPokemons) // 149 pokemons passed down from Pokemon Page. 
 
-  const onSearchPokemon = () => {
-    const lowerCasedText = searchText.toLowerCase();
-    const updatedPokemons = pokemons.filter((p) =>
-      p.name.toLowerCase().includes(lowerCasedText)
-    );
-    setPokemons(updatedPokemons);
-  };
+
+
 
   return (
     <Container>
@@ -28,9 +17,9 @@ function PokemonPage() {
       <br />
       <PokemonForm />
       <br />
-      <Search setSearchText={setSearchText} onSearchPokemon={onSearchPokemon} />
+      <Search  />
       <br />
-      <PokemonCollection searchText={searchText} pokemons={pokemons} />
+      <PokemonCollection allPokemons={allPokemons} />
     </Container>
   );
 }

@@ -2,23 +2,24 @@ import React, { useState } from "react";
 import { Card } from "semantic-ui-react";
 
 function PokemonCard({ pokemon }) {
-  const [ frontSprite, setFrontSprite ] = useState(true)
+  const [isClicked, setIsClicked] = useState(false);
+
   const {
     name,
     hp,
     sprites: { front, back },
-  } = pokemon; 
+  } = pokemon;
 
-  function toggleSprites() {
-    setFrontSprite(!frontSprite)
+  function handleClick() {
+    // setState to toggle between front and back
+    setIsClicked(!isClicked);
   }
-
 
   return (
     <Card>
       <div>
-        <div onClick={toggleSprites} className="image">
-          <img src={frontSprite ? front : back} alt="oh no!" />
+        <div onClick={handleClick} className="image">
+          <img src={isClicked ? front : back} alt="oh no!" />
         </div>
         <div className="content">
           <div className="header">{name}</div>
